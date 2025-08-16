@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://i.imgur.com/TrOY4Ir.gif" />
+  <title>[SCI] - Manual</title>
+
+  <!-- Fonte e Ícones -->
+  <link href="https://kit-pro.fontawesome.com/releases/v6.2.1/css/pro.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(45deg, #1f1a0d 15%, #a78c47 50%, #0c0a05 75%);
+      background-size: 200% 200%;
+      background-attachment: fixed;
+      animation: gradientAnimation 15s ease infinite;
+      color: #f5f5f5;
+    }
+
+    /* Marca d'água no fundo */
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      right: -400px;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://i.imgur.com/AiB6Kn4.png');
+      background-repeat: no-repeat;
+      background-position: right bottom;
+      background-size: contain;
+      opacity: 0.3;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+   header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #1f1a0d00, #0c0a0500);
+  border-bottom: 3px solid #967e4100;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(150,126,65,0.15), transparent);
+  transform: skewX(-20deg);
+  animation: shine 6s infinite;
+}
+
+@keyframes shine {
+  0% { left: -50%; }
+  100% { left: 100%; }
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.8em;
+  font-weight: 700;
+  color: #d4af37; /* dourado mais chamativo */
+  text-shadow: 0 0 8px rgba(150, 126, 65, 0.6);
+}
+
+header p {
+  margin: 10px 0 0;
+  font-size: 1.2em;
+  color: #cfcfcf;
+  letter-spacing: 1px;
+}
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #F6F3EC;
+      border-left: 6px solid #64542B;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    ul li::before {
+      content: "➤ ";
+      color: #64542B;
+      font-weight: bold;
+    }
+
+    .highlight {
+      background: rgba(0, 208, 132, 0.1);
+      padding: 12px 15px;
+      border-left: 5px solid #967E41;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95em;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    table th, table td {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px;
+      text-align: center;
+      color: #f5f5f5;
+    }
+
+    table th {
+      background: #967E41;
+      color: #181818;
+    }
+
+    table tr:nth-child(even) {
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Créditos */
+    .creditos {
+      width: 90vw;
+      max-width: 900px;
+      text-align: center;
+      margin: 40px auto;
+      padding: 20px;
+      border-top: 1px solid #322A15;
+      font-size: 14px;
+      color: #ffffffc8;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .creditos p strong {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .creditos i {
+      margin-right: 8px;
+    }
+
+    .creditos .line-break {
+      display: block;
+      margin-top: -10px;
+    }
+
+    .creditos.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+       /* Tela de loading */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #322A15;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 2.5s; /* tempo que o loading fica */
+    }
+
+    /* Animação do loading sumindo */
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Conteúdo principal */
+    #content {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+      padding: 40px;
+      text-align: center;
+    }
+
+    /* Quando a página carrega, ativa o efeito */
+    body.loaded #content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Um detalhe no texto do loading */
+    .dots::after {
+      content: "...";
+      animation: dots 1.5s infinite;
+    }
+
+    @keyframes dots {
+      0% { content: ""; }
+      33% { content: "."; }
+      66% { content: ".."; }
+      100% { content: "..."; }
+    }
+
+    /* Responsividade */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  .container {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  table th, table td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 25px 10px;
+  }
+
+  header h1 {
+    font-size: 1.4em;
+  }
+
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  p, ul {
+    font-size: 0.9em;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+ ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #61512a;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #967E41;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7e6b3b;
+      }
+
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #967E41 #61512a;
+      }
+
+  </style>
+</head>
+<body>
+
+<header>
+<!-- Tela de loading -->
+  <div id="loading">
+    Carregando<span class="dots"></span>
+  </div>
+
+  <h1><i class="fa-solid fa-book"></i> Manual</h1>
+  <p>Setor de Comunicação e Interação</p>
+</header>
+
+<div class="container">
+  <h2>Objetivo</h2>
+  <p>Os analistas têm como objetivo promover o entretenimento e manter os analistas da Ordem Militar informados sobre qualquer mudança no decorrer do mês.</p>
+
+  <h2>Funções</h2>
+  <p>O departamento é composto por um setor: membro, sendo funções:</p>
+  <ul>
+    <li>Divulgações da reunião geral</li>
+    <li>Promoções semanais</li>
+    <li>Projetos/Sugestões aprovadas</li>
+    <li>Realização das atas</li>
+    <li>Construção e desmontagem dos eventos</li>
+    <li>Divulgação dos melhores da semana</li>
+    <li>Confecção da lista de presença</li>
+  </ul>
+
+  <h2>Setor de Marketing e Evento</h2>
+  <p>É administrado por dois coordenadores e analistas para a realização das atividades ordenadas.</p>
+
+  <h2>Analistas</h2>
+  <p>Responsável pelo entretenimento e das informações repassadas para os analistas da Ordem Militar através das divulgações:</p>
+  <ul>
+    <li>Reunião Geral</li>
+    <li>Promoções</li>
+    <li>Projetos/Sugestões</li>
+    <li>ATA</li>
+    <li>Criação de Evento e Desmontagem</li>
+  </ul>
+
+  <h2>Coordenadores de Marketing e de Evento</h2>
+  <p>Responsáveis pela fiscalização dos seus respectivos setores e repassar informações aos analistas da Ordem Militar através de divulgações:</p>
+  <ul>
+    <li>Melhores da Semana</li>
+    <li>Fiscalização das funções realizadas pelos seus analistas</li>
+  </ul>
+
+  <h2>Nome do assunto na Mensagem Privada (MP)</h2>
+  <ul>
+    <li>Reunião Geral - <strong>[OM] Reunião Geral</strong></li>
+    <li>Promoções - <strong>[OM] Promoções da Semana</strong></li>
+    <li>Projetos/Sugestões - <strong>[OM] Projetos/Sugestões aprovadas</strong></li>
+    <li>ATA - <strong>[OM] ATA da Reunião</strong></li>
+    <li>Melhores da Semana - <strong>[OM] Melhores da Semana</strong></li>
+  </ul>
+
+  <h2>Local de Envio e Postagem de Conclusão</h2>
+  <table>
+    <tr>
+      <th>Cargo</th>
+      <th>Função</th>
+      <th>Local de Envio</th>
+      <th>Postagem de Conclusão</th>
+    </tr>
+    <tr>
+      <td rowspan="5">Membro</td>
+      <td>Reunião Geral</td>
+      <td>Mensagem Privada</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Promoções</td>
+      <td>Mensagem Privada</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Projetos/Sugestões</td>
+      <td>Mensagem Privada</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>ATA</td>
+      <td>[OM] Diário Oficial / Central de Reuniões / MP</td>
+      <td>[DC] Analista > [DC] Escala e Relatório</td>
+    </tr>
+    <tr>
+      <td>Criação do Evento e Desmontagem</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Coordenadores</td>
+      <td>Fiscalização</td>
+      <td>-</td>
+      <td>[DC] Coordenador > [DC] Escala e Relatório</td>
+    </tr>
+    <tr>
+      <td>Melhores da Semana</td>
+      <td>Mensagem Privada</td>
+      <td>[DC] Coordenador > [DC] Escala e Relatório</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Créditos -->
+<div class="creditos">
+  <p>
+    <i class="fas fa-code"></i> Desenvolvido por:
+    <strong>i,t</strong>
+  </p>
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    document.querySelector(".creditos").classList.add("show");
+  });
+</script>
+ <script>
+    // Depois de 3 segundos, adiciona a classe "loaded" no body
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+        document.body.style.overflow = "auto"; // libera rolagem
+      }, 2500);
+    });
+  </script>
+
+</body>
+</html>
